@@ -14,8 +14,8 @@ var app = new Vue({
                                     </div>
                                 </div>
                              <div class="right floated three wide column">
-                            <i class="icon pencil blue" alt="Edit" v-on:click="app.editTask($event, task.id)"></i>
-                             <i class="icon trash red" alt="Delete" v-on:click="app.deleteTask($event, task.id)"></i>
+                                <i class="icon pencil blue inline" alt="Edit" v-on:click="app.editTask($event, task.id)"></i>
+                                <i class="icon trash red" alt="Delete" v-on:click="app.deleteTask($event, task.id)"></i>
                              </div>
                         </div>
                         `
@@ -25,7 +25,7 @@ var app = new Vue({
         tasks: [
             { id: 1, name: 'Todo 1', description: 'This is a todo', completed: false },
             { id: 2, name: 'Todo 2', description: 'This is another todo', completed: false },
-            { id: 3, name: 'Three', description: 'This is a compplete todo', completed: true },
+            { id: 3, name: 'Three', description: 'This is a complete todo', completed: true },
             { id: 4, name: 'Four', description: 'This is another complete todo', completed: true }
         ],
         task: {},
@@ -50,6 +50,14 @@ var app = new Vue({
                     console.log('task toggled');
                 }
             },
+            editTask: function(event, id) {
+                let task = this.tasks.find(item => item.id == id);
+                if (task) {
+                    this.task = { name: task.name,
+                                description: task.description,
+                                completed: task.completed };
+                }
+            },
             deleteTask: function(event, id) {
                 event.stopImmediatePropagation();
 
@@ -60,13 +68,7 @@ var app = new Vue({
                     console.log('deleted : ' + id);
                 }
 
-            },
-            editTask: function(event, id) {
-                let taskIndex = this.tasks.findIndex(item => item.id = id);
-                if (task) {
-                    this.task = task;
-                }
-                console.log("clicked edit");
             }
+
         }
 })
