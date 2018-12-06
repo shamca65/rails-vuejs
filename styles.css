@@ -11,3 +11,9 @@
 {
     background: lightgoldenrodyellow;
 }
+
+.description
+{
+    color: slategray;
+    font-style: italic;
+}
