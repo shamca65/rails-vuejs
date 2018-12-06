@@ -25,17 +25,17 @@
                         <div class="ui header">
                             <i class="icon play circle orange"></i><b>In Progress Tasks - {{todoTasks.length}}</b>
                         </div>
-                    <div class="ui segment task" v-for="task in todoTasks">
-                        {{ task.id}} {{ task.name }}: {{ task.description }}: Completed?: {{ task.completed}}
-                    </div>
+                    <task
+                         v-bind:task="task"
+                         v-for="task in todoTasks" />
                 </div>
                 <div id="completed" class="tasklist">
                         <div class="ui header">
                             <i class="icon check circle green"></i><b>Completed Tasks - {{completedTasks.length}}</b>
                         </div>
-                    <div class="ui segment task" v-for="task in completedTasks">
-                        {{ task.id}} {{ task.name }}: {{ task.description }}: Completed?: {{ task.completed}}
-                    </div>
+                    <task
+                         v-bind:task="task"
+                         v-for="task in completedTasks" />
                 </div>
             </div>
             <div class="six wide column">
