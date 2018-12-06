@@ -28,6 +28,7 @@ var app = new Vue({
             { id: 3, name: 'Three', description: 'This is a compplete todo', completed: true },
             { id: 4, name: 'Four', description: 'This is another complete todo', completed: true }
         ],
+        task: {},
         message: 'Hello World!'
         },
         computed: {
@@ -62,6 +63,9 @@ var app = new Vue({
             },
             editTask: function(event, id) {
                 let taskIndex = this.tasks.findIndex(item => item.id = id);
+                if (task) {
+                    this.task = task;
+                }
                 console.log("clicked edit");
             }
         }
