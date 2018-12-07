@@ -87,7 +87,7 @@ var app = new Vue({
             updateTask: function(event, id){
                 console.log('update event')
                 event.stopImmediatePropagation();
-                event.preventDefault();
+
                 let task = this.tasks.find(item => item.id == id);
                 if(task) {
                     task.name = this.task.name;
