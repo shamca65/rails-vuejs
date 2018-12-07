@@ -29,7 +29,7 @@ var app = new Vue({
             { id: 4, name: 'Four', description: 'This is another complete todo', completed: true }
         ],
         task: {},
-        message: 'Hello World!',
+        message: '',
         action: 'create'
         },
         computed: {
@@ -50,6 +50,7 @@ var app = new Vue({
             clear: function () {
                 this.task = {};
                 this.action = 'create';
+                this.message = '';
             },
             toggleDone: function(event, id) {
                 event.stopImmediatePropagation();
@@ -58,6 +59,7 @@ var app = new Vue({
                 if (task) {
                     task.completed = !task.completed;
                     console.log('task toggled');
+
                 }
             },
             editTask: function(event, id) {
@@ -69,6 +71,7 @@ var app = new Vue({
                                 description: task.description,
                                 completed: task.completed };
                 }
+                this.message = `Task ${id} updated`;
             },
             deleteTask: function(event, id) {
                 event.stopImmediatePropagation();
@@ -79,6 +82,7 @@ var app = new Vue({
                     this.$delete(this.tasks, taskIndex);
                     console.log('deleted : ' + id);
                 }
+                this.message = 'Task deleted';
             },
             updateTask: function(event, id){
                 console.log('update event')
@@ -89,7 +93,9 @@ var app = new Vue({
                     task.name = this.task.name;
                     task.description = this.task.description;
                     task.completed = this.task.completed;
+
                 }
+                this.message = `Task ${id} updated`;
             },
             createTask: function(event, id){
                 console.log('create event')
@@ -107,6 +113,7 @@ var app = new Vue({
                 let newTask = Object.assign({}, this.task);
                 this.tasks.push(newTask)
                 this.clear();
+                this.message = `Task ${taskId} created`;
             }
 
         }
