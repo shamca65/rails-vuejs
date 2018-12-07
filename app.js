@@ -29,7 +29,8 @@ var app = new Vue({
             { id: 4, name: 'Four', description: 'This is another complete todo', completed: true }
         ],
         task: {},
-        message: 'Hello World!'
+        message: 'Hello World!',
+        action: 'create'
         },
         computed: {
             completedTasks: function() {
@@ -41,6 +42,10 @@ var app = new Vue({
             }
         },
         methods: {
+            clear: function () {
+                this.task = {};
+                this.action = 'create';
+            },
             toggleDone: function(event, id) {
                 event.stopImmediatePropagation();
 
@@ -51,6 +56,7 @@ var app = new Vue({
                 }
             },
             editTask: function(event, id) {
+                this.action = 'edit';
                 let task = this.tasks.find(item => item.id == id);
                 if (task) {
                     this.task = { id: id,
@@ -74,6 +80,17 @@ var app = new Vue({
                 event.stopImmediatePropagation();
                 event.preventDefault();
                 let task = this.tasks.find(item => item.id == id);
+                if(task) {
+                    task.name = this.task.name;
+                    task.description = this.task.description;
+                    task.completed = this.task.completed;
+                }
+            },
+            createTask: function(event, id){
+                console.log('create event')
+                event.stopImmediatePropagation();
+                event.preventDefault();
+
                 if(task) {
                     task.name = this.task.name;
                     task.description = this.task.description;
